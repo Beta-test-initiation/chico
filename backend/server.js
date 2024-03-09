@@ -20,12 +20,9 @@ app.post('/generate-trends', async (req, res) => {
     const generateResponse = await cohere.generate({
       prompt: prompt,
     });
-    console.log(generateResponse);
-    if (generateResponse.body.event_type === "text-generation" && generateResponse.body.is_finished) {
-      res.json(generateResponse.body);
-    } else {
-      res.status(400).json({ message: 'Generation not finished or invalid event type' });
-    }
+    console.log(generateResponse)
+    res.json(generateResponse);
+    
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
