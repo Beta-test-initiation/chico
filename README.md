@@ -1,2 +1,2 @@
-# chico
+# Chico
 cmd-f
