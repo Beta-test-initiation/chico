@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Allura } from 'next/font/google'
 import { ABeeZee } from 'next/font/google'
+import React from 'react'
 
 const allura = Allura({
     weight: '400',
@@ -15,29 +16,30 @@ const abeezee = ABeeZee({
 
 const Navbar = () => {
   return (
-    <div>
-        <div class="flex items-center fixed top-0 w-full">
-            <Link href="/">
-                <p className={allura.className}>Chico</p>
+    <div className="h-167 bg-white">
+        <div className="flex items-center ml-10 w-full text-[20px]">
+            <Link href="/" className={allura.className}>
+                Chico
             </Link>
         </div>
 
-        <div className="flex flex-row items-center">
+        <div className="flex space-x-6 border-b mb-10 px-5 py-5 items-center justify-start">
             <div className={abeezee.className}>
-                <Link href="/" className={abeezee.className}>Home</Link>
-            </div>
-
-            <div className="p-5">
-                <Link href="/news" className={abeezee.className}>News</Link>
-            </div>
-
-            <div className="p-5">
-                <Link href="/resources" className={abeezee.className}>Resources</Link>
+                <Link href="/" className="hover:text-zinc-500 transition-colors">Home</Link>
             </div>
 
             <div className={abeezee.className}>
-                <Link href="/chatbot" className="bg-green">Streep</Link>
+                <Link href="/news" className="hover:text-zinc-500 transition-colors">News</Link>
             </div>
+
+            <div className={abeezee.className}>
+                <Link href="/resources" className="hover:text-zinc-500 transition-colors">Resources</Link>
+            </div>
+
+            <div className={abeezee.className}>
+                <Link href="/chatbot"className="hover:text-zinc-500 transition-colors">Streep</Link>
+            </div>
+            
         </div>
     </div>
   )
