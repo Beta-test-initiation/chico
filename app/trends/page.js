@@ -19,8 +19,6 @@ export default function RunwayTrends() {
 
       setTrends(processText(fullText));
 
-
-
     } catch (error) {
       console.error('Error generating trends:', error);
     }
