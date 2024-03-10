@@ -33,23 +33,44 @@ const NewsIndex = () => {
     },
     {
       slug: 'news4',
-      title: 'Title for News 4',
-      imageSrc: '/assets/news1.jpg',
-      link: '#',
+      title: 'The Best Fashion Boutiques in the Country, According to Vogue Editors',
+      imageSrc: '/assets/news4.jpg',
+      link: 'https://www.vogue.com/article/fashion-boutiques-around-the-country',
       description: 'Read more',
     },
     {
       slug: 'news5',
-      title: 'Title for News 5',
-      imageSrc: '/assets/news2.jpg',
-      link: '#',
+      title: 'Aurora James on Her 15 Percent Pledge Campaign to Support Black-Owned Businesses',
+      imageSrc: '/assets/news5.jpg',
+      link: 'https://www.vogue.com/article/aurora-james-brother-vellies-15-percent-pledge-small-business-spotlight',
       description: 'Read more',
     },
     {
       slug: 'news6',
-      title: 'Title for News 6',
-      imageSrc: '/assets/news3.jpg',
-      link: '#',
+      title: 'Rio Uribe of Gypsy Sport on Finding More Meaningful Diversity in Fashion',
+      imageSrc: '/assets/news6.jpg',
+      link: 'https://www.vogue.com/article/rio-uribe-gypsy-sport-pride-small-business-spotlight',
+      description: 'Read more',
+    },
+    {
+      slug: 'news7',
+      title: 'Small brands are setting goalposts for sustainable fashion',
+      imageSrc: '/assets/news7.jpg',
+      link: 'https://www.voguebusiness.com/sustainability/small-brands-are-setting-goalposts-for-sustainable-fashion',
+      description: 'Read more',
+    },
+    {
+      slug: 'news8',
+      title: 'How London Label Tove Is Quietly Building a New Blueprint for Emerging Brands',
+      imageSrc: '/assets/news8.jpg',
+      link: 'https://www.vogue.com/article/tove-small-business-spotlight',
+      description: 'Read more',
+    },
+    {
+      slug: 'news9',
+      title: "33 Small Female-Founded Fashion Brands To Get To Know This International Women's Day",
+      imageSrc: '/assets/news9.jpg',
+      link: 'https://www.elle.com/uk/fashion/g26748220/small-female-fashion-brands-to-get-to-know/',
       description: 'Read more',
     },
   ];
@@ -59,8 +80,17 @@ const NewsIndex = () => {
       <Navbar />
       <div className="flex flex-wrap justify-center">
         {newsList.map((news, index) => (
-          <div key={news.slug} className="text-center max-w-[400px] mb-8 mx-4"> {/* Added mx-4 for horizontal margin */}
-            <Image src={news.imageSrc} width={400} height={367} alt={news.title} className="mb-4" /> {/* Added mb-4 for vertical margin */}
+          <div key={news.slug} className="text-center max-w-[400px] mb-8 mx-4">
+            {/* Updated Image component */}
+            <Image
+              src={news.imageSrc}
+              width={400}
+              height={367}
+              alt={news.title}
+              className="mb-4"
+              layout="fixed" // Set layout to "fixed"
+              objectFit="cover" // Set objectFit to "cover" or "contain" as needed
+            />
             <h3 className={`mt-2 ${aBeeZee.className} text-left`} style={{ fontSize: '26px' }}>
               {news.title}
             </h3>
