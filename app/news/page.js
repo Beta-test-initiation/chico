@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from '@/frontend/components/Navbar';
+import Navbar from '/frontend/components/Navbar';
 import Image from 'next/image';
 import { ABeeZee } from 'next/font/google';
 
