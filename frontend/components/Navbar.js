@@ -37,7 +37,7 @@ const Navbar = () => {
             </div>
 
             <div className={abeezee.className}>
-                <Link href="/chatbot"className="hover:text-green-950 hover:border hover:border-green-950 rounded hover:bg-white bg-green-950 p-2 text-white transition-colors">Streep</Link>
+                <Link href="/matcher"className="hover:text-green-950 hover:border hover:border-green-950 rounded hover:bg-white bg-green-950 p-2 text-white transition-colors">Streep</Link>
             </div>
             
         </div>

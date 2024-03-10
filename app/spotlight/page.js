@@ -1,8 +1,7 @@
 // pages/monthly-spotlight.js
-
+"use client"
 import React from 'react';
 import styled from 'styled-components';
-import Navbar from '@/frontend/components/Navbar';
 import { Almarai, ABeeZee } from 'next/font/google';
 
 const SpotlightPageContainer = styled.div`
@@ -51,7 +50,6 @@ const ContentText = styled.p`
 const MonthlySpotlightPage = () => {
   return (
     <div>
-      <Navbar />
       <SpotlightPageContainer>
         <Title>Monthly Spotlight</Title>
         <SpotlightSection>
