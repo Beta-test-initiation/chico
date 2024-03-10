@@ -2,37 +2,61 @@
 
 import axios from 'axios';
 import { useState } from 'react';
+import ml5 from 'ml5';
 
 function App() {
-  const [query, setQuery] = useState('colourful sports red tutleneck morning');
+  const [query, setQuery] = useState('');
   const [bestMatch, setBestMatch] = useState('');
 
   const fetchMatch = async () => {
     try {
-      // Assuming `query` is the state variable containing the user's search input
       const response = await axios.post('http://localhost:3001/search-outfits', {
-        query: query // Sending user's query to the server
+        query: query
       });
-
-      // Process the response to get the best matching outfit
-      setBestMatch(response.data.bestMatchOutfit); // Update state with the best match
+      setBestMatch(response.data.bestMatchOutfit);
       console.log(response.data);
-
     } catch (error) {
       console.error('Error fetching matching outfit:', error);
     }
   };
 
+  const handleImageUpload = (e) => {
+    const files = e.target.files;
+    Array.from(files).forEach(file => {
+      const reader = new FileReader();
+      reader.onload = async (e) => {
+        const img = new Image();
+        img.src = e.target.result;
+        img.onload = async () => {
+          const classifier = await ml5.imageClassifier('MobileNet');
+          console.log('Model Loaded!');
+          classifier.classify(img, (err, results) => {
+            if (err) {
+              console.error(err);
+            } else {
+              const description = results[0].label;
+              console.log(description);
+              // Concatenate or handle the classification result for each image
+              setQuery(prev => prev ? `${prev}, ${description}` : description);
+            }
+          });
+        };
+      };
+      reader.readAsDataURL(file);
+    });
+  };
+
   return (
     <div>
+      <input type="file" multiple onChange={handleImageUpload} />
       <input
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        placeholder="Describe the outfit you're looking for"
+        placeholder="Describe the outfits you're looking for"
       />
-      <button onClick={fetchMatch}>Find Outfit</button>
-      {bestMatch && <div>Best Match: {bestMatch}</div>} 
+      <button onClick={fetchMatch}>Find Outfits</button>
+      {bestMatch && <div>Best Match: {bestMatch}</div>}
     </div>
   );
 }
