@@ -1,8 +1,23 @@
 {
-    "Oversized Outers": "https://example.com/oversized-outers",
-    "Sheer Dynamic": "https://example.com/sheer-dynamic",
-    "Clashing Colors": "https://example.com/clashing-colors",
-    "Puffed Sleeves": "https://example.com/puffed-sleeves",
-    "High-Waisted": "https://example.com/high-waisted-everything"
-  }
-  
+  "oversized": "https://example-fashion-site.com/oversized-outers",
+  "sheer": "https://example-fashion-site.com/sheer-dynamic",
+  "colors": "https://example-fashion-site.com/clashing-colors",
+  "puffed": "https://example-fashion-site.com/puffed-sleeves",
+  "High-Waisted Everything": "https://example-fashion-site.com/high-waisted-everything",
+  "bows": "https://example-fashion-site.com/oversized-bows",
+  "Sheer Fabrics": "https://example-fashion-site.com/sheer-fabrics",
+  "Bright Yellow": "https://example-fashion-site.com/bright-yellow",
+  "Bold Florals": "https://example-fashion-site.com/bold-florals",
+  "High-Waisted Pants": "https://example-fashion-site.com/high-waisted-pants",
+  "Structured Blazers": "https://example-fashion-site.com/structured-blazers",
+  "Statement Boots": "https://example-fashion-site.com/statement-boots",
+  "Pleated Midi Skirts": "https://example-fashion-site.com/pleated-midi-skirts",
+  "Statement Shoulders": "https://example-fashion-site.com/statement-shoulders",
+  "Monochromatic Ensembles": "https://example-fashion-site.com/monochromatic-ensembles",
+  "Wide-Leg Jeans": "https://example-fashion-site.com/wide-leg-jeans",
+  "Neoprene Workout Gear": "https://example-fashion-site.com/neoprene-workout-gear",
+  "Pastel Color-Blocking": "https://example-fashion-site.com/pastel-color-blocking",
+  "Knitwear Layering": "https://example-fashion-site.com/knitwear-layering",
+  "Minimalist Leather Garments": "https://example-fashion-site.com/minimalist-leather-garments",
+  "Bows": ""
+}
