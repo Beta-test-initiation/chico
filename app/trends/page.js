@@ -31,7 +31,7 @@ export default function RunwayTrends() {
     const trendEntries = fullText.split(/\d+\./).slice(1); // Skip the first empty entry from split
   
     const extractedTrends = trendEntries.map((entry) => {
-      const parts = entry.split(' - ' || ':' || ': ' || ' : ');
+      const parts = entry.split(' - ' || ':' || ": " || " : ");
       const name = parts[0]?.trim();
       const description = parts[1]?.trim() || "Description not available.";
       const url = findTrendUrl(name); // Find URL for the trend or use placeholder
