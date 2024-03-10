@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useState } from 'react';
 
 function App() {
-  const [query, setQuery] = useState('summer');
+  const [query, setQuery] = useState('colourful sports red tutleneck morning');
   const [bestMatch, setBestMatch] = useState('');
 
   const fetchMatch = async () => {
@@ -15,7 +15,8 @@ function App() {
       });
 
       // Process the response to get the best matching outfit
-      setBestMatch(response.data.bestMatch); // Update state with the best match
+      setBestMatch(response.data.bestMatchOutfit); // Update state with the best match
+      console.log(response.data);
 
     } catch (error) {
       console.error('Error fetching matching outfit:', error);
@@ -31,7 +32,7 @@ function App() {
         placeholder="Describe the outfit you're looking for"
       />
       <button onClick={fetchMatch}>Find Outfit</button>
-      {bestMatch && <div>Best Match: {bestMatch}</div>}
+      {bestMatch && <div>Best Match: {bestMatch}</div>} 
     </div>
   );
 }
