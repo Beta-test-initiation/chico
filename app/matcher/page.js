@@ -3,6 +3,8 @@
 import axios from 'axios';
 import { useState, useRef, useEffect } from 'react';
 import ml5 from 'ml5';
+import Navbar from '/frontend/components/Navbar';
+import Typed from 'typed.js';
 
 function App() {
   const [query, setQuery] = useState('');
@@ -26,8 +28,21 @@ function App() {
       const response = await axios.post('http://localhost:3001/search-outfits', {
         query: query
       });
-      setBestMatch(response.data.bestMatchOutfit);
-      console.log(response.data);
+      if (response.data.bestMatchOutfit) {
+        setBestMatch(''); // Clear previous best match
+        const bestMatchText = response.data.bestMatchOutfit;
+        
+        // Create a new instance of Typed.js
+        new Typed('#bestMatch', {
+          strings: [bestMatchText],
+          typeSpeed: 50, // Typing speed in milliseconds
+          onComplete: () => {
+            console.log('Typing animation completed');
+          }
+        });
+      } else {
+        console.error('Error: Invalid bestMatchOutfit data');
+      }
     } catch (error) {
       console.error('Error fetching matching outfit:', error);
     }
@@ -92,7 +107,7 @@ function App() {
           setQuery(prev => prev ? `${prev}, ${description}` : description);
         });
         // Schedule the next classification in 3 seconds
-        setTimeout(classifyAndScheduleNext, 3000);
+        setTimeout(classifyAndScheduleNext, 500);
       }
     };
 
@@ -104,20 +119,75 @@ function App() {
     return () => clearInterval(intervalIdRef.current);
   }, []);
 
+  
+
   return (
     <div>
-      <input type="file" accept="image/*" multiple onChange={handleImageUpload} />
-      <input type="file" accept="video/*" onChange={handleVideoUpload} />
-      <video ref={videoRef} width="400" controls style={{ display: 'none' }} />
-      <input
-        type="text"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        placeholder="Describe the outfits you're looking for"
-      />
-      <button onClick={fetchMatch}>Find Outfits</button>
-      {bestMatch && <div>Best Match: {bestMatch}</div>}
+  <Navbar />
+  <div className="bg-[#B3C0BD] flex flex-col justify-between min-h-screen">
+    <div className="p-10">
+    <h1 className='text-3xl mb-4 font-bold'>Make your own outfit</h1>
+      <div className='w-[80px] h-[7px] bg-green-950 mb-40'></div>
+      
+  <div className='flex flex-row'>
+    <div className="mr-10 ">
+      <img src='/assets/streep.svg' />
     </div>
+    <div className='flex flex-col mb-3 rounded p-4 bg-gray-200'>
+        <p className='mb-3'>Let me help you make an outfit today!</p>
+        <div className='w-[70vw]'>
+          <div id="bestMatch"></div>
+          
+        </div>
+       
+      <div className='flex flex-row'>
+        <div className="mb-4">
+          <label htmlFor="imageUpload" className="inline-block text-green-950 border border-green-950 hover:bg-green-950 hover:text-white font-semibold py-2 px-4 rounded-md cursor-pointer">
+            Upload Images
+          </label>
+          <input 
+            id="imageUpload"
+            type="file" 
+            accept="image/*" 
+            multiple 
+            onChange={handleImageUpload} 
+            className="hidden" 
+          />
+        </div>
+        <div className="mb-4 ml-2">
+          <label htmlFor="videoUpload" className="inline-block text-green-950 border border-green-950 hover:bg-green-950 hover:text-white font-semibold py-2 px-4 rounded-md cursor-pointer">
+            Upload Video
+          </label>
+          <input 
+            id="videoUpload"
+            type="file" 
+            accept="video/*" 
+            onChange={handleVideoUpload} 
+            className="hidden" 
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <video ref={videoRef} width="400" controls style={{ display: 'none' }} />
+  <input
+    type="text"
+    value={query}
+    onChange={(e) => setQuery(e.target.value)}
+    placeholder="Describe the outfits you're looking for"
+    className="w-full py-2 px-4 mb-4 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
+  />
+  <button
+    onClick={fetchMatch}
+    className="bg-green-950 hover:bg-white hover:text-green-950 hover:border hover:brder-green-950 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline"
+  >
+    Find Outfits
+  </button>
+</div>
+
+  </div>
+</div>
+
   );
 }
 
