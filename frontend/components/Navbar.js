@@ -16,14 +16,14 @@ const abeezee = ABeeZee({
 
 const Navbar = () => {
   return (
-    <div className="h-167 bg-white">
-        <div className="flex items-center ml-10 w-full text-[20px]">
-            <Link href="/" className={allura.className}>
+    <div className="bg-white border-b">
+        <div className={allura.className} >
+            <Link href="/" className="flex items-center pt-2 ml-5 w-full text-7xl">
                 Chico
             </Link>
         </div>
 
-        <div className="flex space-x-6 border-b mb-10 px-5 py-5 items-center justify-start">
+        <div className="flex space-x-6  mb-7 px-5 py-2 items-center justify-start">
             <div className={abeezee.className}>
                 <Link href="/" className="hover:text-zinc-500 transition-colors">Home</Link>
             </div>
@@ -37,7 +37,7 @@ const Navbar = () => {
             </div>
 
             <div className={abeezee.className}>
-                <Link href="/chatbot"className="hover:text-zinc-500 transition-colors">Streep</Link>
+                <Link href="/chatbot"className="hover:text-green-950 hover:border hover:border-green-950 rounded hover:bg-white bg-green-950 p-2 text-white transition-colors">Streep</Link>
             </div>
             
         </div>
