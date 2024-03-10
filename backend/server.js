@@ -11,12 +11,12 @@ app.use(cors());
 app.use(express.json());
 
 const cohere = new CohereClient({
-  token: "hNJtCITvyk0m6zkguAXyH4zpNRGVmHUv50sEXbRc",
+  token: "DHaqdHYsakzTGsjNcNXtN9S6f3mkJVhER4vC6vrF",
 });
 
 app.post('/generate-trends', async (req, res) => {
   try {
-    const prompt = "Predict the latest runway fashion trends for the 2024 season.";
+    const prompt = "give me 15 latest runway trends for the 2024 season, can you also give a precentage of how that trend has increased, which particular clothing articles, colors are popular as well as for how long they have been popular for. ";
     const generateResponse = await cohere.generate({
       prompt: prompt,
     });
