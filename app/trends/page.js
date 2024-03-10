@@ -1,6 +1,7 @@
 // Inside your Next.js component
 "use client";
 import websiteData from '../websitedata.json';
+import imageData from '../pictures.json';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Masonry from 'react-responsive-masonry';
@@ -12,6 +13,20 @@ export default function RunwayTrends() {
     // Attempt to find a URL by checking if any key in websiteData contains a part of the trendName
     const matchedKey = Object.keys(websiteData).find(key => trendName.toLowerCase().includes(key.toLowerCase()));
     return matchedKey ? websiteData[matchedKey] : 'https://placeholder.com';
+  };
+
+  const findTrendImg = (trendName) => {
+    // Split the trendName into words for more granular comparison
+    const trendNameWords = trendName.toLowerCase().split(/\s+/);
+  
+    const matchedKey = Object.keys(imageData).find(key => {
+      // Split each key into words for comparison
+      const keyWords = key.toLowerCase().split(/\s+/);
+      // Check if any word from trendName matches any word from the key
+      return trendNameWords.some(trendWord => keyWords.includes(trendWord));
+    });
+  
+    return matchedKey ? imageData[matchedKey] : '/assets/trends/11.jpeg';
   };
 
   const fetchTrends = async () => {
@@ -39,8 +54,9 @@ export default function RunwayTrends() {
       const name = parts[0]?.trim();
       const description = parts[1]?.trim() || "Description not available.";
       const url = findTrendUrl(name); // Find URL for the trend or use placeholder
+      const img = findTrendImg(name);
   
-      return { name, description, url };
+      return { name, description, url, img};
     });
     console.log(extractedTrends);
     return extractedTrends;
@@ -69,7 +85,7 @@ export default function RunwayTrends() {
           <div className="relative inline-block group">
           <div className="relative w-full h-auto">
               <img
-                src={`/assets/trends/${index}.jpeg`}
+                src={trend.img}
                 alt={trend.name}
                 className="w-auto h-auto opacity-70 group-hover:opacity-90"
               />
